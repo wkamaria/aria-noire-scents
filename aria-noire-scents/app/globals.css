@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+  body {
+    @apply bg-ivory font-sans text-espresso antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-serif text-olive;
+  }
+  :focus-visible {
+    outline: 2px solid #292b0b;
+    outline-offset: 3px;
+  }
+  .on-dark :focus-visible {
+    outline-color: #c9a64b;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-olive text-ivory hover:bg-espresso;
+  }
+  .btn-outline {
+    @apply border border-olive/40 text-olive hover:border-olive hover:bg-olive hover:text-ivory;
+  }
+  .arch {
+    border-radius: 999px 999px 0 0;
+  }
+  /* The logo JPEG has a pure-white background; multiply blends it into ivory
+     without editing the file. */
+  .logo-blend {
+    mix-blend-mode: multiply;
+  }
+}
+
+/* One restrained page-load moment: the hero content rises in once. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.rise-2 { animation-delay: 0.12s; }
+.rise-3 { animation-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise { animation: none; }
+  * { transition-duration: 0.01ms !important; }
+}
